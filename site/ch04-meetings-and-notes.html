@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 4: Meetings and Notes — The Workplace AI Etiquette Guide</title>
+<meta name="description" content="Plain-English manual on using AI at work without trouble. Education only, not legal advice.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="site-title" href="index.html">The Workplace AI <span>Etiquette Guide</span></a>
+    <p class="disclaimer">Education only &mdash; not legal advice.</p>
+    <nav class="site-nav"><a href="ch01-reading-employer-policy.html">Reading Your Employer&#x27;s Policy</a> <a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data</a> <a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports</a> <a href="ch04-meetings-and-notes.html">Meetings and Notes</a> <a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use</a> <a href="ch06-saying-no-gracefully.html">Saying No Gracefully</a> <a href="ch07-escalation-red-flags.html">Escalation Red Flags</a></nav>
+  </div>
+</header>
+<main>
+<article>
+<p>Meeting notes are one of the least glamorous and most automatable parts of work. AI can absolutely help you capture and tidy them — as long as the same confidentiality care from <a href="ch02-confidentiality-and-client-data.html">Chapter 2</a> applies to what you record and where.</p>
+<h2>The two-step approach</h2>
+<ol>
+<li><strong>Capture rough.</strong> During the meeting, write messy shorthand (or use a note-taker tool your employer has approved — many now exist).</li>
+<li><strong>Polish with AI.</strong> After the meeting, feed your <em>de-identified</em> rough notes to a tool and ask for a structured summary.</li>
+</ol>
+<p>Never let an unsanctioned recorder or note-taking bot join a meeting without checking your employer's rules — several states require everyone's consent for recording, and several workplaces ban it outright.</p>
+<h2>A prompting pattern for notes</h2>
+<p>Feed the tool your cleaned-up shorthand in this shape:</p>
+<blockquote><p>These are rough notes from a meeting. Turn them into a summary with three sections: Decisions, Action items (with owners), and Open questions. Keep the wording plain. Here are the notes: [pasted, cleaned notes]</p></blockquote>
+<p>You'll get back something presentable in seconds. Then you do the human part: check that every action item still matches what people actually agreed to.</p>
+<h2>Find and fix the action items</h2>
+<p>A quick count tells you whether the structure survived the rewrite. This command was tested and works:</p>
+<pre><code>
+$ grep -c &quot;Action:&quot; meeting-summary.md
+3
+</code></pre>
+<p>If the AI produced an "Actions" section but zero <code>Action:</code> lines, your export format changed — glance before you circulate.</p>
+<h2>Sharing notes safely</h2>
+<p>Before you circulate AI-polished notes:</p>
+<ul>
+<li>Confirm the attendee list: notes for internal people can still mention things that must not reach clients.</li>
+<li>Run your redaction routine one more time. It's faster than an apology. This email-scrub command was tested and works:</li>
+</ul>
+<pre><code>
+$ sed -E &#x27;s/[[:alnum:]._%+-]+@[[:alnum:].-]+/[REDACTED-EMAIL]/g&#x27; meeting-notes.md &gt; meeting-notes-clean.md
+$ diff meeting-notes.md meeting-notes-clean.md
+2c2
+&lt; manager: dana.rivera@example.com
+&gt; manager: [REDACTED-EMAIL]
+</code></pre>
+<p>The diff shows you exactly what got scrubbed, so you're not guessing.</p>
+<h2>The one-line script version</h2>
+<p>If you do this weekly, put your redaction pipeline in a tiny script once and stop thinking about it thereafter:</p>
+<pre><code>
+$ cat &gt; clean-notes.sh &lt;&lt;&#x27;EOF&#x27;
+#!/bin/sh
+sed -E &#x27;s/[[:alnum:]._%+-]+@[[:alnum:].-]+/[REDACTED-EMAIL]/g; s/https?:\/\/[^ )]+/[REDACTED-LINK]/g; s/[0-9]{3}-[0-9]{2}-[0-9]{4}/XXX-XX-XXXX/g&#x27; &quot;$1&quot; &gt; &quot;$2&quot;
+EOF
+</code></pre>
+<p>Then weekly: <code>sh clean-notes.sh rough-notes.md clean-notes.md</code>, paste only <code>clean-notes.md</code> into your tool. Keep the script with your files and you've made a habit that costs zero effort per meeting. The script is MIT-licensed along with this manual (see the LICENSE file in this project).</p>
+<h2>Checklist from this chapter</h2>
+<ul>
+<li>Rough-capture, then AI-polish, in two steps</li>
+<li>Strip attendee emails and any client identifiers before pasting</li>
+<li>Check that action items survived the rewrite</li>
+<li>Confirm your employer allows any note-taking bot before it joins a meeting</li>
+</ul>
+<hr>
+<p><em>Education only, not legal advice. The Workplace AI Etiquette Guide, by Asdale Dynamics, LLC.</em></p>
+</article>
+<nav class="pager"><span><a href="ch03-drafting-emails-and-reports.html">&larr; Drafting Emails and Reports</a></span><span><a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use &rarr;</a></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>The Workplace AI Etiquette Guide &mdash; by Asdale Dynamics, LLC. Educational content only; not legal advice.</p>
+  </div>
+</footer>
+</body>
+</html>

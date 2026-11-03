@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 1: Reading Your Employer&#x27;s Policy — The Workplace AI Etiquette Guide</title>
+<meta name="description" content="Plain-English manual on using AI at work without trouble. Education only, not legal advice.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="site-title" href="index.html">The Workplace AI <span>Etiquette Guide</span></a>
+    <p class="disclaimer">Education only &mdash; not legal advice.</p>
+    <nav class="site-nav"><a href="ch01-reading-employer-policy.html">Reading Your Employer&#x27;s Policy</a> <a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data</a> <a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports</a> <a href="ch04-meetings-and-notes.html">Meetings and Notes</a> <a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use</a> <a href="ch06-saying-no-gracefully.html">Saying No Gracefully</a> <a href="ch07-escalation-red-flags.html">Escalation Red Flags</a></nav>
+  </div>
+</header>
+<main>
+<article>
+<p>Before you type a single prompt into an AI tool at work, do one thing: find out what your employer's rules actually say. Most people skip this, which is how trouble starts. The good news is that finding and reading a policy is easier than it sounds.</p>
+<h2>Why the policy matters first</h2>
+<p>AI policies answer three big questions:</p>
+<ul>
+<li>What tools am I allowed to use?</li>
+<li>What information am I allowed to put into them?</li>
+<li>Do I have to tell anyone when I use them?</li>
+</ul>
+<p>If your company has no written AI policy yet, that does not mean "anything goes." It means you should use extra care with anything confidential, and stay tuned — a policy is probably coming.</p>
+<h2>Step 1: Find the policy</h2>
+<p>Your AI rules usually live in one of these places (or several):</p>
+<ul>
+<li>The employee handbook or intranet</li>
+<li>An "Acceptable Use" or "Information Security" policy</li>
+<li>An "Acceptable Technology Use" or "Data Protection" policy</li>
+<li>IT announcements or an all-staff email</li>
+</ul>
+<p>If you can search company documents, a text search beats skimming. Here are commands for searching a folder of company documents you have saved locally (adjust the folder name). They were tested and work:</p>
+<pre><code>
+$ find ~/company-docs -iname &quot;*handbook*&quot; -o -iname &quot;*policy*&quot; -o -iname &quot;*acceptable*&quot;
+/home/dylan/company-docs/employee-handbook-2026.pdf
+/home/dylan/company-docs/acceptable-use-policy.txt
+</code></pre>
+<blockquote><p>The folder <code>~/company-docs</code> is just an example. Save your own documents somewhere like that first, and never upload confidential files to a public location.</p></blockquote>
+<p>To pull every "AI" mention out of the documents you copied, saving your search to a file:</p>
+<pre><code>
+$ grep -riE &quot;artificial intelligence|ai tools|chatgpt|copilot|llm&quot; ~/company-docs &gt; ai-mentions.txt
+$ wc -l ai-mentions.txt
+13 ai-mentions.txt
+</code></pre>
+<p>Your numbers will differ, of course. On any platform, <code>grep -i</code> means "ignore upper/lower case", so "AI tools" and "ai tools" both match; the tilde is just a shortcut for your home folder, or skip the redirect and let the results print to the screen instead.</p>
+<h2>Step 2: Read like this</h2>
+<p>Instead of trying to absorb every word, hunt for answers in this order:</p>
+<ol>
+<li><strong>Scope</strong> — Does it cover you? ("applies to all employees using...", yes, that's you)</li>
+<li><strong>Approved tools list</strong> — Names of what you may use. If a tool you like isn't on the list, don't use it; ask.</li>
+<li><strong>Confidentiality rules</strong> — Words like "company data", "customer data", "confidential", or "internal use only".</li>
+<li><strong>Disclosure requirements</strong> — Phrases like "must disclose", "review required", or "supervisor approval".</li>
+<li><strong>Consequences</strong> — Usually near the end: "violation may result in..."</li>
+</ol>
+<h2>Step 3: Turn it into plain English</h2>
+<p>Summarize the policy in three sentences using that structure. If you can't — or the wording is vague — the next best move is a simple, non-confrontational question to HR or your manager:</p>
+<blockquote><p>"I want to make sure I'm following our AI rules. Could you point me to the part of the policy that applies to [the task you want to do]?"</p></blockquote>
+<p>That's it. Asking a genuine question is never a red flag; guessing and hoping is.</p>
+<h2>Checklist from this chapter</h2>
+<ul>
+<li>Find the policy (search local copies first)</li>
+<li>Note the approved-tools list</li>
+<li>Note what data is off-limits</li>
+<li>Note whether disclosure is required</li>
+<li>Write your three-sentence summary</li>
+</ul>
+<hr>
+<p><em>Education only, not legal advice. The Workplace AI Etiquette Guide, by Asdale Dynamics, LLC.</em></p>
+</article>
+<nav class="pager"><span></span><span><a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data &rarr;</a></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>The Workplace AI Etiquette Guide &mdash; by Asdale Dynamics, LLC. Educational content only; not legal advice.</p>
+  </div>
+</footer>
+</body>
+</html>

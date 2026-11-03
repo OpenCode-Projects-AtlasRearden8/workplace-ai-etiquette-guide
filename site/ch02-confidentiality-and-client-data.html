@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 2: Confidentiality and Client Data — The Workplace AI Etiquette Guide</title>
+<meta name="description" content="Plain-English manual on using AI at work without trouble. Education only, not legal advice.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="site-title" href="index.html">The Workplace AI <span>Etiquette Guide</span></a>
+    <p class="disclaimer">Education only &mdash; not legal advice.</p>
+    <nav class="site-nav"><a href="ch01-reading-employer-policy.html">Reading Your Employer&#x27;s Policy</a> <a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data</a> <a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports</a> <a href="ch04-meetings-and-notes.html">Meetings and Notes</a> <a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use</a> <a href="ch06-saying-no-gracefully.html">Saying No Gracefully</a> <a href="ch07-escalation-red-flags.html">Escalation Red Flags</a></nav>
+  </div>
+</header>
+<main>
+<article>
+<p>This is the chapter that prevents the biggest AI-at-work disasters. Everything here is about one idea: <strong>what you type into a tool can leave your control.</strong> Say that to yourself once. It's the whole chapter in a sentence.</p>
+<h2>The mental model: the AI is a stranger you're talking to</h2>
+<p>Think of a generic, consumer-grade AI chat tool as a public blog post you're about to publish. Would you put that client's name on a blog? Their invoice number? Their health details? If not, don't put it in the chat.</p>
+<p>Some business tools have agreements that change this picture (Chapter 1 will tell you what your company allows). But the default, safe assumption for a free public tool is: <strong>anything you paste could be stored, reviewed, or trained on.</strong></p>
+<h2>The three kinds of information</h2>
+<ol>
+<li><strong>Public</strong> — things anyone could find (already-published docs, general knowledge). Generally fine for any tool.</li>
+<li><strong>Internal</strong> — company-only things (project names, internal emails, drafts). Only use tools your company has approved. <a href="ch01-reading-employer-policy.html">See Chapter 1</a>.</li>
+<li><strong>Restricted</strong> — client data, personal data, health data, financial records, credentials, anything with names attached. <strong>Treat as off-limits unless your employer's policy and your tool agreement both explicitly allow it.</strong></li>
+</ol>
+<p>When in doubt, it's restricted.</p>
+<h2>Before you paste: the redaction habit</h2>
+<p>Most "I need AI's help" moments don't actually need real names or numbers. AI is great at "a customer had a billing dispute" — it doesn't need to know who. Get in the habit of scrubbing before you paste.</p>
+<p>Here is the pattern, applied to a sample <code>notes.md</code> that holds an SSN, an email address, and a phone number. It was tested and works — the original file is untouched, and the cleaned copy is written to a <em>different</em> file:</p>
+<pre><code>
+$ cat notes.md
+Contact: Jane Doe, SSN 123-45-6789
+Email jane.doe@example.com, phone (555) 010-1234
+Notes: dispute call on 2026-10-14 went well, follow up Monday
+
+$ sed -E &#x27;s/[[:alnum:]._%+-]+@[[:alnum:].-]+/[REDACTED-EMAIL]/g; s/[0-9]{3}-[0-9]{2}-[0-9]{4}/XXX-XX-XXXX/g; s/[0-9]{4,6}/0000/g&#x27; notes.md &gt; notes-clean.md
+$ cat notes-clean.md
+Contact: Jane Doe, SSN XXX-XX-XXXX
+Email [REDACTED-EMAIL], phone (555) 010-0000
+Notes: dispute call on 0000-10-14 went well, follow up Monday
+</code></pre>
+<p>Three patterns, one pass: emails, SSN-style numbers, and any 4-to-6 digit runs (the date's year got zeroed too — that's the trade-off; verify anything numeric after redacting). Paste only from <code>notes-clean.md</code>.</p>
+<p>A quick keyword check confirms the sensitive tokens are gone (works on macOS, Linux, and Windows with Git Bash):</p>
+<pre><code>
+$ grep -E &quot;(REDACTED-EMAIL|XXX-XX-XXXX)&quot; notes-clean.md
+Contact: Jane Doe, SSN XXX-XX-XXXX
+Email [REDACTED-EMAIL], phone (555) 010-0000
+
+$ grep -inE &quot;client|patient|social security|invoice|confidential&quot; notes-clean.md
+$
+</code></pre>
+<p>The second command returning nothing is the clean scan you want. (Only useful for the words you list; it can't catch everything, which is exactly why the habit of summarizing matters more than the tool.)</p>
+<h2>The summarizing move</h2>
+<p>When redacting feels like too much work, summarize instead. Compare:</p>
+<ul>
+<li><strong>Risky paste:</strong> "Client Jane Doe, invoice #48291, dispute over $12,340 charge dated 2026-10-14..."</li>
+<li><strong>Safe version:</strong> "A client is disputing a significant invoice charge from mid-October and wants a refund. Draft three calm, professional response options."</li>
+</ul>
+<p>You lose nothing. The AI produces better output when it has <em>structure</em>, not secrets.</p>
+<h2>One-time and ongoing rules of thumb</h2>
+<ul>
+<li>Never paste credentials, API keys, or tokens into any AI tool. Anything typed as a password-style secret should be considered burned and rotated. (This guide contains no such examples on purpose.)</li>
+<li>Watch for attachments: uploading a file uploads everything inside it, including things you didn't scroll to.</li>
+<li>Screenshots count. A screenshot of a spreadsheet is a spreadsheet-shaped leak.</li>
+<li>If a workflow turns out to need real client data, that's a Chapter 7 conversation with your employer, not a solo judgment call.</li>
+</ul>
+<h2>The pre-paste checklist</h2>
+<p>Ask these four questions before every paste:</p>
+<ol>
+<li>Is this information public, internal, or restricted?</li>
+<li>Would I be comfortable if this text appeared in a public archive?</li>
+<li>Have I removed names, numbers, and identifiers?</li>
+<li>Is this tool on my employer's approved list?</li>
+</ol>
+<p>Four yes-or-NA answers, then paste.</p>
+<hr>
+<p><em>Education only, not legal advice. The Workplace AI Etiquette Guide, by Asdale Dynamics, LLC.</em></p>
+</article>
+<nav class="pager"><span><a href="ch01-reading-employer-policy.html">&larr; Reading Your Employer's Policy</a></span><span><a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports &rarr;</a></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>The Workplace AI Etiquette Guide &mdash; by Asdale Dynamics, LLC. Educational content only; not legal advice.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 5: When to Disclose AI Use — The Workplace AI Etiquette Guide</title>
+<meta name="description" content="Plain-English manual on using AI at work without trouble. Education only, not legal advice.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="site-title" href="index.html">The Workplace AI <span>Etiquette Guide</span></a>
+    <p class="disclaimer">Education only &mdash; not legal advice.</p>
+    <nav class="site-nav"><a href="ch01-reading-employer-policy.html">Reading Your Employer&#x27;s Policy</a> <a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data</a> <a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports</a> <a href="ch04-meetings-and-notes.html">Meetings and Notes</a> <a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use</a> <a href="ch06-saying-no-gracefully.html">Saying No Gracefully</a> <a href="ch07-escalation-red-flags.html">Escalation Red Flags</a></nav>
+  </div>
+</header>
+<main>
+<article>
+<p>Somewhere between "I never mention the AI" and "I narrate every prompt" there is a comfortable, professional middle. This chapter maps that middle ground.</p>
+<h2>The honest principle</h2>
+<p>If AI use would change a decision someone makes about your work, disclose it. If it's just spellcheck-with-a-thesis, you don't need to open every email with "drafted by GPT."</p>
+<p>Ask: <em>would the reader want to know before relying on this?</em></p>
+<h2>Times disclosure is usually expected</h2>
+<ul>
+<li><strong>Client-facing or published work:</strong> a report, proposal, or article that a client will rely on. A short note in the footer or cover email is enough.</li>
+<li><strong>Catalogued or reviewable deliverables:</strong> meeting minutes, knowledge-base entries — many workplaces want an "assisted by AI" tag.</li>
+<li><strong>When your employer's policy says so.</strong> This is the override. If the policy from <a href="ch01-reading-employer-policy.html">Chapter 1</a> requires disclosure, disclosure wins, full stop.</li>
+<li><strong>If someone asks.</strong> "Did you use AI for this?" gets a straightforward, unbothered yes.</li>
+</ul>
+<h2>Times it's usually fine to skip</h2>
+<ul>
+<li>Brainstorming an outline for your own thinking</li>
+<li>Fixing grammar in your own prose</li>
+<li>Summarizing something only you will read</li>
+<li>Asking a tool to reword one sentence you drafted</li>
+</ul>
+<p>The work product is yours either way. What matters to other people is the accuracy and confidentiality, not the tooling.</p>
+<h2>What good disclosure sounds like</h2>
+<p>Short and unapologetic beats long and defensive:</p>
+<blockquote><p>"Drafted with AI assistance, then reviewed and edited by me."</p></blockquote>
+<blockquote><p></p></blockquote>
+<blockquote><p>"Used AI to summarize the raw notes; I verified action items with each owner."</p></blockquote>
+<blockquote><p></p></blockquote>
+<blockquote><p>"The data chart AI produced had the axis labels wrong; I've fixed them."</p></blockquote>
+<p>Notice the pattern: name the tool's role, name what <em>you</em> did. It reads as competence, not confession.</p>
+<h2>Keep a log for when it matters</h2>
+<p>For anything client-facing, keep a tiny log file of what you used AI for and what you verified. One tested command builds it and one shows it (your date will differ, and <code>&gt;</code> creates or overwrites the file):</p>
+<pre><code>
+$ printf &#x27;%s | grant-proposal.md | drafted with AI; verified budget math manually\n&#x27; &quot;$(date +%F)&quot; &gt; ai-use-log.txt
+$ cat ai-use-log.txt
+2026-11-03 | grant-proposal.md | drafted with AI; verified budget math manually
+</code></pre>
+<p>Once the file exists, use <code>&gt;&gt;</code> instead of <code>&gt;</code> so you append instead of overwrite:</p>
+<pre><code>
+$ printf &#x27;%s | meeting-summary.md | AI-polished notes; verified action items\n&#x27; &quot;$(date +%F)&quot; &gt;&gt; ai-use-log.txt
+$ tail -2 ai-use-log.txt
+2026-11-03 | grant-proposal.md | drafted with AI; verified budget math manually
+2026-11-03 | meeting-summary.md | AI-polished notes; verified action items
+</code></pre>
+<p>Sixty seconds now saves you an awkward deposition-style interview later, if a client ever asks what was human.</p>
+<h2>Answering the question directly</h2>
+<p>When someone asks "did you use AI?", any of these work:</p>
+<ul>
+<li>"Yes — I drafted it with AI and checked every number myself."</li>
+<li>"Partially. The structure came from AI; the recommendations are mine."</li>
+<li>"No, I wrote this one from scratch."</li>
+</ul>
+<p>All three are respected answers. What isn't respected is being caught in a shrug, because the follow-up question in every workplace is about <em>everything else you did</em>.</p>
+<hr>
+<p><em>Education only, not legal advice. The Workplace AI Etiquette Guide, by Asdale Dynamics, LLC.</em></p>
+</article>
+<nav class="pager"><span><a href="ch04-meetings-and-notes.html">&larr; Meetings and Notes</a></span><span><a href="ch06-saying-no-gracefully.html">Saying No Gracefully &rarr;</a></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>The Workplace AI Etiquette Guide &mdash; by Asdale Dynamics, LLC. Educational content only; not legal advice.</p>
+  </div>
+</footer>
+</body>
+</html>

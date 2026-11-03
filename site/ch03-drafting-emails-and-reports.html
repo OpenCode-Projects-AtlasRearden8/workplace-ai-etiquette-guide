@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 3: Drafting Emails and Reports — The Workplace AI Etiquette Guide</title>
+<meta name="description" content="Plain-English manual on using AI at work without trouble. Education only, not legal advice.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="site-title" href="index.html">The Workplace AI <span>Etiquette Guide</span></a>
+    <p class="disclaimer">Education only &mdash; not legal advice.</p>
+    <nav class="site-nav"><a href="ch01-reading-employer-policy.html">Reading Your Employer&#x27;s Policy</a> <a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data</a> <a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports</a> <a href="ch04-meetings-and-notes.html">Meetings and Notes</a> <a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use</a> <a href="ch06-saying-no-gracefully.html">Saying No Gracefully</a> <a href="ch07-escalation-red-flags.html">Escalation Red Flags</a></nav>
+  </div>
+</header>
+<main>
+<article>
+<p>Drafting is where AI genuinely shines at work. The catch: AI drafts are usually <em>about right and not quite right</em>, in subtle ways. This chapter is about getting a good draft fast and checking it well.</p>
+<h2>The workflow that works</h2>
+<ol>
+<li><strong>You set the shape.</strong> Bullet-point the key facts and the goal.</li>
+<li><strong>AI drafts.</strong> Give it the audience, tone, and length you want.</li>
+<li><strong>You verify.</strong> Every fact, date, number, and name — you check them.</li>
+<li><strong>You make it yours.</strong> Rewrite anything you wouldn't naturally say.</li>
+</ol>
+<p>Skipping step 3 is how "the AI said it" becomes "you said it, incorrectly."</p>
+<h2>A prompting pattern for emails</h2>
+<p>Vague prompts give vague emails. Try this shape:</p>
+<blockquote><p>Write a warm but professional email to my manager explaining [goal] and [reason]. Keep it under 120 words. I'll supply the facts: [three bullet points]. End by asking for a short call.</p></blockquote>
+<p>The AI writes <em>around</em> your facts; it never invents between them. If it adds something you didn't give it, that's your edit queue, not a bonus.</p>
+<h2>Quality checks before you send</h2>
+<p>Do these checks every time, in this order:</p>
+<ul>
+<li><strong>Facts:</strong> names, dates, amounts, and attachments — verify each against your source.</li>
+<li><strong>Tone:</strong> read it once out loud. Anything you'd never say in a hallway, cut.</li>
+<li><strong>Claims:</strong> AI sometimes asserts things confidently that you never told it. Delete or verify them.</li>
+</ul>
+<p>Two commands that catch real problems before sending. Both were tested and work. First, a word count to keep it tight:</p>
+<pre><code>
+$ wc -w draft-email.md
+121 draft-email.md
+</code></pre>
+<p>Second, a scan for placeholder text that AI loves to leave behind (works even if the file was pasted straight from a chat window):</p>
+<pre><code>
+$ grep -inE &quot;\[(insert|your|name|date|amount)|TBD|TODO|\{.*\}&quot; draft-email.md
+6:The replacement unit ships once accounting releases the approved [amount] to the vendor.
+8:The timeline for the swap is confirmed for [date of incident], weather permitting.
+</code></pre>
+<p>Those bracket placeholders are exactly the things that mortify people when sent. The scan found them; now fill or cut them.</p>
+<h2>Working from versions</h2>
+<p>Save draft versions as files so you can see what changed between AI passes. The classic <code>diff</code> tool works fine:</p>
+<pre><code>
+$ diff draft-v1.md draft-v2.md
+11c11
+&lt; We regret the inconvenience this may have caused.
+---
+&gt; I apologize for the confusion on our end, and here&#x27;s what we&#x27;re doing about it:
+</code></pre>
+<p>Now you're reviewing a small edit instead of re-reading a whole email — and you can keep the human line and reject the AI flourish.</p>
+<h2>Confidentiality check, every time</h2>
+<p>This chapter only works with Chapter 2's rules attached: strip client names and identifiers before pasting content into a public AI tool, and use only employer-approved tools for anything internal. An email draft is internal the moment it mentions your company's business.</p>
+<h2>The send checklist</h2>
+<ul>
+<li>Facts verified against source?</li>
+<li>Placeholders gone?</li>
+<li>Tone is yours?</li>
+<li>No confidential details leaked into the tool?</li>
+<li>Done in fewer passes than editing it yourself would have taken? (If not, do it yourself — that's a valid outcome.)</li>
+</ul>
+<hr>
+<p><em>Education only, not legal advice. The Workplace AI Etiquette Guide, by Asdale Dynamics, LLC.</em></p>
+</article>
+<nav class="pager"><span><a href="ch02-confidentiality-and-client-data.html">&larr; Confidentiality and Client Data</a></span><span><a href="ch04-meetings-and-notes.html">Meetings and Notes &rarr;</a></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>The Workplace AI Etiquette Guide &mdash; by Asdale Dynamics, LLC. Educational content only; not legal advice.</p>
+  </div>
+</footer>
+</body>
+</html>

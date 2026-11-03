@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 7: Escalation Red Flags — The Workplace AI Etiquette Guide</title>
+<meta name="description" content="Plain-English manual on using AI at work without trouble. Education only, not legal advice.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="site-title" href="index.html">The Workplace AI <span>Etiquette Guide</span></a>
+    <p class="disclaimer">Education only &mdash; not legal advice.</p>
+    <nav class="site-nav"><a href="ch01-reading-employer-policy.html">Reading Your Employer&#x27;s Policy</a> <a href="ch02-confidentiality-and-client-data.html">Confidentiality and Client Data</a> <a href="ch03-drafting-emails-and-reports.html">Drafting Emails and Reports</a> <a href="ch04-meetings-and-notes.html">Meetings and Notes</a> <a href="ch05-when-to-disclose-ai-use.html">When to Disclose AI Use</a> <a href="ch06-saying-no-gracefully.html">Saying No Gracefully</a> <a href="ch07-escalation-red-flags.html">Escalation Red Flags</a></nav>
+  </div>
+</header>
+<main>
+<article>
+<p>Most AI mishaps are small. A few are not. This chapter is about telling the difference early — and knowing who to tell when it's the second kind.</p>
+<p>The unifying principle: <strong>speed and honesty beat perfection.</strong> A promptly reported small problem is a Tuesday. A hidden one grows.</p>
+<h2>Red flags: escalate now</h2>
+<p>Treat any of these as a same-day escalation to your manager and IT (or your named security contact):</p>
+<ul>
+<li><strong>Credentials in a prompt.</strong> You pasted an API key, password, or token into any AI tool, public or internal.</li>
+<li><strong>Restricted data in a public tool.</strong> Client records, health data, personal data, or anything marked Confidential went into a tool that isn't on your employer's approved list.</li>
+<li><strong>AI output you can't verify got shipped.</strong> A client received numbers, claims, or a legal-sounding clause that nobody checked.</li>
+<li><strong>A policy conflict with pressure.</strong> Someone above you is instructing you to do the thing you believe the policy forbids, and it's client data or credentials.</li>
+<li><strong>A tool you didn't sanction joined a meeting.</strong> A third-party note-taker or transcriber appeared, especially with clients present.</li>
+<li><strong>You've been asked to hide AI use.</strong> Editing records to <em>look</em> hand-written when it wasn't, retroactively removing "AI assisted" tags, etc.</li>
+</ul>
+<p>Two of these — credentials and restricted-data — also usually trigger obligations your employer has, like breach-notice rules. That's why "tell someone today" isn't optional theater; other clocks start when the data leaves.</p>
+<h2>The escalation script</h2>
+<p>Keep it short; details in writing afterwards:</p>
+<blockquote><p>"I want to flag something from this morning. I pasted [what] into [which tool] before realizing it wasn't approved. I deleted the conversation and I'm rotating the credential — who else needs to know, and is there anything I should do while we wait?"</p></blockquote>
+<p>What makes this work: the situation is named in one sentence, you've already done the safe move, and you're asking for direction rather than confessing in a panic. This is exactly what good organizations want to hear early.</p>
+<h2>Log it — lightly, for yourself</h2>
+<p>A short incident note helps you remember who you told and when, which matters more than it sounds. Tested command; writes one line per incident:</p>
+<pre><code>
+$ printf &#x27;%s | client-list.xlsx pasted into public chat tool | deleted chat; told IT same day\n&#x27; &quot;$(date +%F)&quot; &gt; ai-incident-log.txt
+$ cat ai-incident-log.txt
+2026-11-03 | client-list.xlsx pasted into public chat tool | deleted chat; told IT same day
+</code></pre>
+<p>Use <code>&gt;&gt;</code> on later entries so the log grows (same trick from the <a href="ch05-when-to-disclose-ai-use.html">disclosure log in Chapter 5</a>). It becomes your own timeline <em>if</em> questions come later — keep it factual: what, which tool, what you did, who you told. Opinions and blame stay out of logs.</p>
+<h2>Yellow flags: fix quietly, no escalation</h2>
+<p>Not everything needs a meeting:</p>
+<ul>
+<li>An AI draft had a wrong fact that you caught and fixed before sending</li>
+<li>You pasted internal-but-not-restricted text into an unapproved tool, then deleted it</li>
+<li>You used a tool outside the approved list for a public-information task</li>
+</ul>
+<p>Correct, note briefly in your own log if it repeats, and carry on. Escalating trivia trains everyone to ignore escalation.</p>
+<h2>The decision in one line</h2>
+<blockquote><p><strong>"Would I want my employer to hear about this from me first, or from someone else?"</strong></p></blockquote>
+<p>If the honest answer is "from me first" — you know what to do today.</p>
+<hr>
+<p><em>Education only, not legal advice. The Workplace AI Etiquette Guide, by Asdale Dynamics, LLC.</em></p>
+</article>
+<nav class="pager"><span><a href="ch06-saying-no-gracefully.html">&larr; Saying No Gracefully</a></span><span></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="inner">
+    <p>The Workplace AI Etiquette Guide &mdash; by Asdale Dynamics, LLC. Educational content only; not legal advice.</p>
+  </div>
+</footer>
+</body>
+</html>
